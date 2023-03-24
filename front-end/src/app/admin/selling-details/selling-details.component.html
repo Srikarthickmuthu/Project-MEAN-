@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div>
+  <h2>List of Total Products sold</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Image</th>
+        <th>Product name</th>
+        <th>Total Quantity Ordered</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of cart">
+        <td><img src="{{ product.productImage }}" /></td>
+        <td>{{ product.productName }}</td>
+        <td>
+          <button (click)="total(product.productName, product.productPrice)">
+            Click Here ..!
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

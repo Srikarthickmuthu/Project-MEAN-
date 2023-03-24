@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="cart?.length !== 0">
+  <h2>List of Ordered Products</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Image</th>
+        <th>Product name</th>
+        <th>Product Type</th>
+        <th>Product Price</th>
+        <th>Quantity</th>
+        <th>Ordered By</th>
+        <th>Delivery status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cart of cart">
+        <td><img src="{{ cart.productImage }}" /></td>
+        <td>{{ cart.productName }}</td>
+        <td>{{ cart.productType }}</td>
+        <td>{{ cart.productPrice }}</td>
+        <td>{{cart.quantity}}</td>
+        <td>{{ cart.userId }}</td>
+        <td><button (click)="delivered(cart.id)">Delivered</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-container *ngIf="cart?.length == 0">
+  <div class="card"></div>
+</ng-container>

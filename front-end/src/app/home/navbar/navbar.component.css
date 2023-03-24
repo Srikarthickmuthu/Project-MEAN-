@@ -1,0 +1,19 @@
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(241, 213, 176);
+}
+li {
+  padding: 25px;
+  font-size: 20px;
+  text-decoration: none;
+}
+li:hover {
+  background-color: rgb(148, 135, 135);
+}
+img {
+  position: absolute;
+  left: 10px;
+  height: 80px;
+}

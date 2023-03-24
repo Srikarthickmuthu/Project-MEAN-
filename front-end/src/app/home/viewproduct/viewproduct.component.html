@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div *ngFor="let item of product1">
+    <div class="card">
+      <img src="{{ item.productImage }}" alt="images" />
+      <h3>{{ item.productName }}</h3>
+      <p><strong>Price:</strong>₹ {{ item.productPrice }}</p>
+      <p>{{ item.productType }}</p>
+
+      <button (click)="cart(item)" *ngIf="item.show" id="button">ADD TO CART</button>
+      <button *ngIf="!item.show" (click)="added()" class="disabled">
+        ITEM ADDED TO CART
+      </button>
+    </div>
+  </div>
+</div>

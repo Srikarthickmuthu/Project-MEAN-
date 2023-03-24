@@ -1,0 +1,54 @@
+<ng-container *ngIf="showUser">
+  <nav>
+    <ul>
+      <img
+        src="../assets/product-images/Screenshot from 2023-01-19 12-44-45.png"
+      />
+      <li routerLink="/home-path/user-home-path">
+        <p>Home</p>
+      </li>
+      <li routerLink="/home-path/user-cart-path">
+        <p>My Cart</p>
+      </li>
+      <li routerLink="/home-path/track-delivery-path" *ngIf="showLogout">
+        <p>Track Delivery</p>
+      </li>
+      <li routerLink="/home-path/total-orders-path" *ngIf="showLogout">
+        <p>My Orders</p>
+      </li>
+      <li routerLink="/loginSignUp-path/login-path" *ngIf="!showLogout">
+        <p>Login</p>
+      </li>
+      <li (click)="logout()" *ngIf="showLogout">
+        <p>LogOut</p>
+      </li>
+    </ul>
+  </nav>
+</ng-container>
+<ng-container *ngIf="!showUser">
+  <div>
+    <ul>
+      <img
+        src="../assets/product-images/Screenshot from 2023-01-19 12-44-45.png"
+      />
+      <li routerLink="/admin-path/add-product-path">
+        <p>Add Product</p>
+      </li>
+      <li routerLink="/admin-path/view-product-path">
+        <p>View Product</p>
+      </li>
+      <li routerLink="/admin-path/selling-details-path">
+        <p>Total Orders</p>
+      </li>
+      <li routerLink="/admin-path/delivery-path">
+        <p>Delivery</p>
+      </li>
+      <li routerLink="/admin-path/user-access-path">
+        <p>User List</p>
+      </li>
+      <li (click)="logout()">
+        <p>Logout</p>
+      </li>
+    </ul>
+  </div>
+</ng-container>

@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="column1">
+  <h2>List of Products</h2>
+  <table>
+    <thead>
+      <tr>
+        <!-- <th>Id</th> -->
+        <th>Product Image</th>
+        <th>Product name</th>
+        <th>Product Type</th>
+        <th>Product Price</th>
+        <th colspan="2">Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of product">
+        <!-- <td>{{ product.id }}</td> -->
+        <td><img src="{{ product.productImage }}" /></td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productType }}</td>
+        <td>{{ product.productPrice }}</td>
+        <td>
+          <button
+            mat-raised-button
+            (click)="editProduct(product._id)"
+            style="background-color: rgba(133, 189, 49, 0.842)"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="deleteProduct(product._id)"
+            style="background-color: red"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

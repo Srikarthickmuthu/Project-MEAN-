@@ -1,0 +1,54 @@
+<div class="container">
+  <form #editProduct="ngForm" (ngSubmit)="onSubmit(editProduct)">
+    <h1>Edit product</h1>
+    <div>
+      <input
+        id="id"
+        name="id"
+        class="formcontrol"
+        type="text"
+        placeholder="Enter the id"
+        ngModel
+        [(ngModel)]="product._id"
+      />
+      <input
+        id="productName"
+        name="productName"
+        class="formcontrol"
+        type="text"
+        placeholder="Enter the name of the product"
+        [(ngModel)]="product.productName"
+      />
+      <select
+        id="productType"
+        name="productType"
+        for="productType"
+        class="formcontrol"
+        [(ngModel)]="product.productType"
+        required
+      >
+        <option>Gram</option>
+        <option>Kilogram</option>
+        <option>Liter</option>
+        <option>Count</option>
+      </select>
+      <input
+        id="productPrice"
+        name="productPrice"
+        class="formcontrol"
+        type="number"
+        placeholder="Enter the price of the product"
+        [(ngModel)]="product.productPrice"
+      />
+      <input
+        id="productImage"
+        name="productImage"
+        class="formcontrol"
+        type="text"
+        placeholder="Enter the image path"
+        [(ngModel)]="product.productImage"
+      />
+      <button>Edit Product</button>
+    </div>
+  </form>
+</div>

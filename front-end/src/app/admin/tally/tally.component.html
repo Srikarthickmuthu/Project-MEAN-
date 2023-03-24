@@ -1,0 +1,25 @@
+<div class="container">
+  <form>
+    <h1>Total Orders</h1>
+    <div>
+      <tr>
+        <th>Product Name</th>
+        <td>{{ data }}</td>
+      </tr>
+      <tr>
+        <th>Product Price</th>
+        <td>{{ Price }}</td>
+      </tr>
+      <tr>
+        <th>Total Quantities Ordered</th>
+        <td>{{ Quantity }}</td>
+      </tr>
+      <tr>
+        <th>Total Sales price</th>
+        <td>{{ Quantity * Price }}</td>
+      </tr>
+    </div>
+    <br />
+    <button (click)="close()">Close</button>
+  </form>
+</div>

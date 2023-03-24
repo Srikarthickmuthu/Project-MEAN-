@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Number</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Country</th>
+      <th>Block User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of user">
+      <td>{{ user.id }}</td>
+      <td>{{ user.fname }}</td>
+      <td>{{ user.lname }}</td>
+      <td>{{ user.number }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.password }}</td>
+      <td>{{ user.country }}</td>
+      <td>
+        <button (click)="blockUser(user.id)">Block</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
