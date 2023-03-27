@@ -22,7 +22,7 @@
         <td>{{ cart.productPrice }}</td>
         <td>{{cart.quantity}}</td>
         <td>{{ cart.userId }}</td>
-        <td><button (click)="delivered(cart.id)">Delivered</button></td>
+        <td><button (click)="delivered(cart._id)">Delivered</button></td>
       </tr>
     </tbody>
   </table>

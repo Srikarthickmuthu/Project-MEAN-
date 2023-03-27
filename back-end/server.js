@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-
 const app = express();
 
 var corsOptions = {
@@ -33,9 +32,9 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
-
-  require("./app/routes/product.routes","./app/routes/user.routes")(app);
-  // require("./app/routes/user.routes")(app);
+  require("./app/routes/product.routes")(app);
+  require("./app/routes/user.routes")(app);
+  require("./app/routes/cart.routes")(app);
   
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

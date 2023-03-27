@@ -28,7 +28,7 @@
             <b> {{product.quantity}} </b>
             <button (click)="increment(product , product.productName)"><i class="fa-solid fa-plus"></i></button>
           </td>
-          <td><button (click)="delete(product.id)" id="button">Remove</button></td>
+          <td><button (click)="delete(product._id)" id="button">Remove</button></td>
         </tr>
       </tbody>
       <tfoot>

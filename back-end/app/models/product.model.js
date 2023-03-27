@@ -5,7 +5,6 @@ module.exports = mongoose => {
       {
         length: Number,
         userId: String,
-        // id: Number,
         show:Boolean,
         productName: String,
         productType: String,

@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
-  url = 'http://localhost:3000';
+  url = 'http://localhost:8080/api';
 
   getUser(): Observable<any> {
-    return this.http.get(`${this.url}/user-details`);
+    return this.http.get(`${this.url}/user/`);
   }
 
   getProduct(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/product/`);
+    return this.http.get(`${this.url}/product/`);
   }
 
   getProductEdit(id: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/product/${id}`);
+    return this.http.get(`${this.url}/product/${id}`);
   }
 }

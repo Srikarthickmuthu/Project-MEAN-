@@ -71,7 +71,7 @@ export class CartComponent implements OnInit {
       data.total = data.productPrice * data.quantity;
       this.cart.map((element: any) => {
         if (element.productName == name) {
-          return (this.id = element.id);
+          return (this.id = element._id);
         }
       });
       this.userservice.updateDelivery(this.id, data).subscribe(
@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
       data.total = data.productPrice * data.quantity;
       this.cart.map((element: any) => {
         if (element.productName == name) {
-          return (this.id = element.id);
+          return (this.id = element._id);
         }
       });
       this.userservice.updateDelivery(this.id, data).subscribe(
@@ -108,7 +108,7 @@ export class CartComponent implements OnInit {
  async checkout() {
   for (const element of this.cart) {
     element.deliveryStatus = 'Out for delivery';
-    const id = element.id;
+    const id = element._id;
     await this.userservice.updateDelivery(id, element).toPromise();
   }
   this.getCart();

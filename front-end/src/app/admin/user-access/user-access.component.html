@@ -2,7 +2,7 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
+      <!-- <th>Id</th> -->
       <th>First name</th>
       <th>Last name</th>
       <th>Number</th>
@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of user">
-      <td>{{ user.id }}</td>
+      <!-- <td>{{ user.id }}</td> -->
       <td>{{ user.fname }}</td>
       <td>{{ user.lname }}</td>
       <td>{{ user.number }}</td>
@@ -22,7 +22,7 @@
       <td>{{ user.password }}</td>
       <td>{{ user.country }}</td>
       <td>
-        <button (click)="blockUser(user.id)">Block</button>
+        <button (click)="blockUser(user._id)">Block</button>
       </td>
     </tr>
   </tbody>

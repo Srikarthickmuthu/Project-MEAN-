@@ -19,6 +19,8 @@ export class AddProductComponent {
 
   onSubmit(formData: NgForm): void {
     console.log(formData.value)
+    formData.value.show=true
+    console.log("form",formData.value)
     this.userService.addProductAdmin(formData.value).subscribe(
       () => {
         formData.resetForm();

@@ -1,23 +1,17 @@
 module.exports = app => {
     const productPath = require("../controllers/product.controller.js");
 
-    // const userPath = require("../controllers/user.controller.js");
-
     var router = require("express").Router();
   
-    router.post("/product", productPath.addProduct);
+    router.post("/", productPath.addProduct);
   
-    router.get("/product", productPath.getProduct);
+    router.get("/", productPath.getProduct);
+  
+    router.get("/:id", productPath.getSingleProduct);
 
-    // router.post("/user", userPath.addProduct);
+    router.put("/:id", productPath.editProduct);
   
-    // router.get("/user", userPath.getProduct);
+    router.delete("/:id", productPath.deleteProduct);
   
-    router.get("/product/:id", productPath.getSingleProduct);
-
-    router.put("/product/:id", productPath.editProduct);
-  
-    router.delete("/product/:id", productPath.deleteProduct);
-  
-    app.use('/api', router);
+    app.use('/api/product', router);
   };

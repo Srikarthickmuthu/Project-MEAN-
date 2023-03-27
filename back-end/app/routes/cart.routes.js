@@ -1,17 +1,17 @@
-// module.exports = app => {
-//     const productPath = require("../controllers/cart.controller.js");
-  
-//     var router = require("express").Router();
-  
-//     router.post("/", productPath.addProduct);
-  
-//     router.get("/", productPath.getProduct);
-  
-//     router.get("/:id", productPath.getSingleProduct);
+module.exports = app => {
+    const cartPath = require("../controllers/cart.controller.js");
 
-//     router.put("/:id", productPath.editProduct);
+    var router = require("express").Router();
   
-//     router.delete("/:id", productPath.deleteProduct);
+    router.post("/", cartPath.addProduct);
   
-//     app.use('/api/cart', router);
-//   };
+    router.get("/", cartPath.getCart);
+  
+    router.get("/:id", cartPath.getSingleCart);
+
+    router.put("/:id", cartPath.updateDelivery);
+  
+    router.delete("/:id", cartPath.deleteCart);
+  
+    app.use('/api/cart', router);
+  };

@@ -7,6 +7,7 @@ exports.addProduct = (req, res) => {
     productPrice: req.body.productPrice,
     productType: req.body.productType,
     productImage: req.body.productImage,
+    show: req.body.show,
   });
   product
     .save(product)
@@ -23,12 +24,7 @@ exports.addProduct = (req, res) => {
 };
 
 exports.getProduct = (req, res) => {
-  const productName = req.query.productName;
-  var condition = productName
-    ? { productName: { $regex: new RegExp(productName), $options: "i" } }
-    : {};
-
-  Product.find(condition)
+  Product.find()
     .then((data) => {
       res.send(data);
     })
@@ -42,7 +38,6 @@ exports.getProduct = (req, res) => {
 
 exports.getSingleProduct = (req, res) => {
   const id = req.params.id;
-
   Product.findById(id)
     .then((data) => {
       if (!data)
@@ -56,16 +51,13 @@ exports.getSingleProduct = (req, res) => {
     });
 };
 
-
 exports.editProduct = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
       message: "Data to update can not be empty!",
     });
   }
-
   const id = req.params.id;
-
   Product.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
@@ -83,7 +75,7 @@ exports.editProduct = (req, res) => {
 
 exports.deleteProduct = (req, res) => {
   const id = req.params.id;
-
+  
   Product.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
@@ -102,17 +94,3 @@ exports.deleteProduct = (req, res) => {
       });
     });
 };
-
-// // Find all published products
-// exports.findAllPublished = (req, res) => {
-//     Product.find({ published: true })
-//       .then(data => {
-//         res.send(data);
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || "Some error occurred while retrieving products."
-//         });
-//       });
-// };
