@@ -3,17 +3,18 @@ const Cart = db.cart;
 
 exports.addProduct = (req, res) => {
   const cart = new Cart({
-    deliveryStatus:req.body.deliveryStatus,
-    show:req.body.show,
-    quantity:req.body.quantity,
-    total:req.body.total,
-    userId:req.body.userId,
+    deliveryStatus: req.body.deliveryStatus,
+    show: req.body.show,
+    quantity: req.body.quantity,
+    total: req.body.total,
+    userId: req.body.userId,
     productName: req.body.productName,
     productPrice: req.body.productPrice,
     productType: req.body.productType,
     productImage: req.body.productImage,
   });
-  cart.save(cart)
+  cart
+    .save(cart)
     .then((data) => {
       res.send(data);
       console.log("data added to databse");
@@ -54,7 +55,6 @@ exports.getSingleCart = (req, res) => {
         .send({ message: "Error retrieving Product with id=" + id });
     });
 };
-
 
 exports.updateDelivery = (req, res) => {
   if (!req.body) {
