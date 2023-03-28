@@ -49,7 +49,7 @@ describe('AccessService', () => {
     const email = 'user@aspire.com';
     const password = 'User@123';
     const user: UserData = {
-      id: 1, email, password,
+      _id: 1, email, password,
       fname: '',
       lname: '',
       number: 0,

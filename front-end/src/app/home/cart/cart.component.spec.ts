@@ -64,7 +64,7 @@ describe('CartComponent', () => {
       total: 25,
       length: 1,
       userId: '1',
-      id: 1,
+      _id: 1,
       show: true,
       productName: 'abc',
       productImage: 'abc',
@@ -77,7 +77,7 @@ describe('CartComponent', () => {
     expect(data.quantity).toEqual(6);
     expect(data.total).toEqual(expectedData.total);
     expect(userService.updateDelivery).toHaveBeenCalledWith(
-      expectedData.id,
+      expectedData._id,
       expectedData
     );
   });
@@ -89,7 +89,7 @@ describe('CartComponent', () => {
       total: 25,
       length: 1,
       userId: '1',
-      id: 1,
+      _id: 1,
       show: true,
       productName: 'abc',
       productImage: 'abc',
@@ -103,7 +103,7 @@ describe('CartComponent', () => {
     expect(cartItem.quantity).toBe(1);
     expect(cartItem.total).toBe(10);
     expect(userService.updateDelivery).toHaveBeenCalledWith(
-      cartItem.id,
+      cartItem._id,
       cartItem
     );
     expect(component.getCart).toHaveBeenCalled();
@@ -116,7 +116,7 @@ describe('CartComponent', () => {
       total: 25,
       length: 1,
       userId: '1',
-      id: 1,
+      _id: 1,
       show: true,
       productName: 'abc',
       productImage: 'abc',
@@ -136,7 +136,7 @@ describe('CartComponent', () => {
       total: 25,
       length: 1,
       userId: '1',
-      id: 1,
+      _id: 1,
       show: true,
       productName: 'abc',
       productImage: 'abc',
@@ -189,7 +189,7 @@ describe('CartComponent', () => {
 
     expect(userService.updateDelivery).toHaveBeenCalledTimes(2);
     expect(userService.updateDelivery).toHaveBeenCalledWith(1, {
-      id: 1,
+      _id: 1,
       deliveryStatus: 'Out for delivery',
       productImage: 'acx',
       productName: 'sd',
@@ -202,7 +202,7 @@ describe('CartComponent', () => {
       quantity: 1,
     });
     expect(userService.updateDelivery).toHaveBeenCalledWith(2, {
-      id: 1,
+      _id: 1,
       deliveryStatus: 'Out for delivery',
       productImage: 'acx',
       productName: 'sd',

@@ -2,7 +2,6 @@ export interface AddProduct {
   length: any;
   userId: string;
   _id:number;
-  id: number;
   show:true;
   productName: string;
   productType: string;
