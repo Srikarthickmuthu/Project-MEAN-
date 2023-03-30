@@ -10,7 +10,7 @@ import { UserData } from './Guard/sign-up';
 export class UserService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  url = 'http://localhost:8080/api';
+  url = 'http://localhost:8080';
 
   getUser() {
     return localStorage.getItem('Active-User');

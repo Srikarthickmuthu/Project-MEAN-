@@ -24,11 +24,10 @@ exports.addProduct = (req, res) => {
 };
 
 exports.getProduct = (req, res) => {
-  Product.find()
-    .then((data) => {
+  // res.send(product)
+  Product.find().then((data) => {
       res.send(data);
-    })
-    .catch((err) => {
+    }).catch((err) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving products.",
@@ -38,16 +37,12 @@ exports.getProduct = (req, res) => {
 
 exports.getSingleProduct = (req, res) => {
   const id = req.params.id;
-  Product.findById(id)
-    .then((data) => {
+  Product.findById(id).then((data) => {
       if (!data)
         res.status(404).send({ message: "Not found Product with id " + id });
       else res.send(data);
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: "Error retrieving Product with id=" + id });
+    }).catch((err) => {
+        res.status(500).send({ message: "Error retrieving Product with id=" + id });
     });
 };
 

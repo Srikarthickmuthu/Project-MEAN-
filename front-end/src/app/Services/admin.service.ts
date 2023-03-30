@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
-  url = 'http://localhost:8080/api';
+  url = 'http://localhost:8080';
 
   getUser(): Observable<any> {
     return this.http.get(`${this.url}/user/`);

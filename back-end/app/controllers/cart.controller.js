@@ -13,13 +13,10 @@ exports.addProduct = (req, res) => {
     productType: req.body.productType,
     productImage: req.body.productImage,
   });
-  cart
-    .save(cart)
-    .then((data) => {
+  cart.save(cart).then((data) => {
       res.send(data);
       console.log("data added to databse");
-    })
-    .catch((err) => {
+    }).catch((err) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Product.",
