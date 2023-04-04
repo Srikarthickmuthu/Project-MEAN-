@@ -1,6 +1,5 @@
 const db = require("../models");
 const Cart = db.cart;
-
 exports.addProduct = (req, res) => {
   const cart = new Cart({
     deliveryStatus: req.body.deliveryStatus,

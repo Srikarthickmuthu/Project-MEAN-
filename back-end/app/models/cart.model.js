@@ -13,10 +13,8 @@ module.exports = mongoose => {
           deliveryStatus: String,
           quantity:Number,
           total:Number,
-        },
-        { timestamps: true }
+        }
       )
     )
-  
     return Cart
   };

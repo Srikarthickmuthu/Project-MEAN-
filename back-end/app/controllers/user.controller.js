@@ -1,4 +1,5 @@
 const db = require("../models");
+const jwt= require("jsonwebtoken");
 const User = db.user;
 exports.addUser = (req, res) => {
   const user = new User({
@@ -10,11 +11,10 @@ exports.addUser = (req, res) => {
     gender: req.body.gender,
     country: req.body.country
   });
-  user
-    .save(user)
-    .then((data) => {
-      res.send(data);
-      console.log("data added to databse");
+
+  user.save(user).then((data) => {
+      res.send(data)
+      console.log("Data added to databse");
     })
     .catch((err) => {
       res.status(500).send({
@@ -40,21 +40,19 @@ exports.getUser = (req, res) => {
     const id = req.params.id;
     console.log(id);
   
-    User.findByIdAndRemove(id)
-      .then((data) => {
+    User.findByIdAndRemove(id).then((data) => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`,
+            message: "User was not found!"
           });
         } else {
           res.send({
-            message: "User was deleted successfully!",
+            message: "User was deleted successfully!"
           });
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         res.status(500).send({
-          message: "Could not delete User with id=" + id,
+          message: "Could not delete User"
         });
       });
   };

@@ -10,10 +10,8 @@ module.exports = (mongoose) => {
         password: String,
         country: String,
         access: String,
-      },
-      { timestamps: true }
+      }
     )
   );
-
   return User;
 };
