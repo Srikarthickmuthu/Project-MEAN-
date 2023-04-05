@@ -1,6 +1,7 @@
 const db = require("../models");
 const jwt= require("jsonwebtoken");
 const User = db.user;
+
 exports.addUser = (req, res) => {
   const user = new User({
     fname: req.body.fname,
@@ -11,7 +12,6 @@ exports.addUser = (req, res) => {
     gender: req.body.gender,
     country: req.body.country
   });
-
   user.save(user).then((data) => {
       res.send(data)
       console.log("Data added to databse");

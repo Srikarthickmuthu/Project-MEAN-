@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 mongoose.connect("mongodb://localhost:27017",{
-    dbName:'Product-details',
+    dbName:'auth',
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=>{
@@ -26,3 +26,5 @@ process.on('SIGINT',async()=>{
     await mongoose.connection.close()
     process.exit(0)
 })
+
+

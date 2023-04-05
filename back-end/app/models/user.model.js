@@ -6,8 +6,16 @@ module.exports = (mongoose) => {
         fname: String,
         lname: String,
         number: Number,
-        email: String,
-        password: String,
+        email: {
+          type:String,
+          required:true,
+          lowercase:true,
+          unique:true
+        },
+        password: {
+          type:String,
+          required:true
+        },
         country: String,
         access: String,
       }

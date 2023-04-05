@@ -1,42 +1,47 @@
 const express = require("express");
+
 const cors = require("cors");
+
 const app = express();
 
+const createError = require("http-errors");
+
+require("./app/config/db.config");
+
 var corsOptions = {
-  origin: "http://localhost:4200"
+  origin: "http://localhost:4200",
 };
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
 app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bigbazar application." });
 });
 
-const db = require("./app/models");
-db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch(err => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
+require("./app/routes/product.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/cart.routes")(app);
+
+app.use(async (req, res, next) => {
+  next(createError.NotFound());
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      status: err.status || 500,
+      message: err.message,
+    },
   });
-  require("./app/routes/product.routes")(app);
-  require("./app/routes/user.routes")(app);
-  require("./app/routes/cart.routes")(app);
-  
+});
+
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
