@@ -20,13 +20,9 @@ export class TrackDeliveryComponent implements OnInit {
    this.getCart()
   }
   getCart() {
-    this.userservice.getCart().subscribe(
+    this.userservice.getCart(this.user,"Out for delivery").subscribe(
       (res: any) => {
-        this.cart = res.filter(
-          (el: { userId: string; deliveryStatus: string }) => {
-            return el.userId == this.user && el.deliveryStatus == 'Out for delivery';
-          }
-        );
+        this.cart=res
         if (this.cart.length == 0) {
           localStorage.removeItem('id');
         }

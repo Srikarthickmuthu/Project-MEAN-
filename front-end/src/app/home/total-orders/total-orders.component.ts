@@ -11,7 +11,6 @@ import { UserService } from 'src/app/Services/user.service';
 export class TotalOrdersComponent {
   cart: any=[];
   user: any;
-  deliveryStatus = 'Delivered';
   show = true;
   showCart = false;
 
@@ -24,13 +23,9 @@ export class TotalOrdersComponent {
   }
 
   getCart() {
-    this.userservice.getCart().subscribe(
+    this.userservice.getCart(this.user,"Delivered").subscribe(
       (res: any) => {
-        this.cart = res.filter(
-          (el: { userId: string; deliveryStatus: string }) => {
-            return el.userId == this.user && el.deliveryStatus == 'Delivered';
-          }
-        );
+        this.cart=res;
       },
       (err: errorMessage) => {
         this.toastr.error(`${err.status} Error ${err.name}`);

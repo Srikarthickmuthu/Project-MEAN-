@@ -4,6 +4,7 @@ import { UserService } from 'src/app/Services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { errorMessage } from 'src/app/Services/Guard/product';
 import { Router } from '@angular/router';
+// import jwt from 'jwt-encode';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,6 +23,8 @@ export class SignUpComponent {
   passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
 
 onSubmit(myForm: NgForm) {
+  // myForm.value.password=jwt_e(myForm.value.password , "secret")
+  console.log(myForm.value)
   this.userservice.addUser(myForm.value).subscribe(
     () => {
       this.handleSuccess(myForm);
@@ -41,13 +44,4 @@ handleSuccess(myForm: NgForm) {
 handleError(err: errorMessage) {
   this.toastr.error(`${err.status} Error ${err.name}`);
 }
-
-  countryList = [
-    { countryname: 'India' },
-    { countryname: 'America' },
-    { countryname: 'Japan' },
-    { countryname: 'China' },
-    { countryname: 'Srilanka' },
-    { countryname: 'Russia' },
-  ];
 }

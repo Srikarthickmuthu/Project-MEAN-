@@ -22,24 +22,9 @@ export class CartComponent implements OnInit {
   }
 
   getCart() {
-    this.userservice.getCart().subscribe(
+    this.userservice.getCart(this.user,"Ordered").subscribe(
       (res: any) => {
-        this.cart = res.filter(
-          (el: { userId: string; deliveryStatus: string }) => {
-            return el.userId == this.user && el.deliveryStatus == 'Ordered';
-          }
-        );
-        this.uniqueCart = this.cart.filter(
-          (item: { productName: any }, index: any, self: any[]) => {
-            return (
-              index ===
-              self.findIndex(
-                (t: { productName: any }) => t.productName === item.productName
-              )
-            );
-          }
-        );
-        this.cart = this.uniqueCart;
+        this.cart=res
         if (this.cart.length == 0) {
           localStorage.removeItem('id');
         }
@@ -113,5 +98,4 @@ export class CartComponent implements OnInit {
   }
   this.getCart();
 }
-
 }

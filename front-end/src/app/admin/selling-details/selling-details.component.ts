@@ -15,11 +15,10 @@ export class SellingDetailsComponent {
   cart!: any;
   cart1!: any;
   update!: AddProduct;
-  Quantity: any;
+  Quantity=0;
   value = 'Delivered';
 
   constructor(
-    public userservice: UserService,
     public adminservice: AdminService,
     private dialog: MatDialog,
     private toastr: ToastrService
@@ -33,16 +32,14 @@ export class SellingDetailsComponent {
   }
 
   total(data: any, id: any) {
-    this.userservice.getCart().subscribe((res: any) => {
-      this.cart1 = res.filter(
-        (el: { deliveryStatus: string; productName: string }) => {
-          return el.deliveryStatus == this.value && el.productName == data;
-        },
+    this.adminservice.getSelling(this.value,data).subscribe((res: any) => {
+      this.cart1 = res,
         (err: errorMessage) => {
           this.toastr.error(`${err.status} Error ${err.name}`);
         }
-      );
-      this.Quantity = this.cart1.length;
+      for(const element of this.cart1){
+        this.Quantity=this.Quantity+element.quantity
+      }
     });
     this.setSessionData(data, id);
     this.openTallyDialog();
@@ -50,9 +47,10 @@ export class SellingDetailsComponent {
 
   setSessionData(data: any, id: any) {
     setTimeout(() => {
-      sessionStorage.setItem('quantity', this.Quantity);
+      sessionStorage.setItem('quantity', this.Quantity.toString());
       sessionStorage.setItem('productName', data);
       sessionStorage.setItem('productPrice', id);
+      this.Quantity=0;
     }, 500);
   }
 

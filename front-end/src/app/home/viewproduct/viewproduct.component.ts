@@ -64,12 +64,8 @@ export class ViewproductComponent implements OnInit {
   }
 
   getCart() {
-    this.userservice.getCart().subscribe((res: any) => {
-      this.cart1 = res.filter(
-        (el: { userId: string; deliveryStatus: string }) => {
-          return el.userId == this.user && el.deliveryStatus == "Ordered";
-        }
-      );
+    this.userservice.getCart(this.user,"Ordered").subscribe((res: any) => {
+      this.cart1=res
       this.cart1.map((element: any) => {
         this.id.push(element.productName);
         localStorage.setItem("id", this.id);

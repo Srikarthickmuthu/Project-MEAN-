@@ -25,15 +25,11 @@ export class DeliveryComponent implements OnInit {
   }
 
   getCart() {
-    this.userservice.getCart().subscribe((res: any) => {
-      this.cart = res.filter(
-        (el: { deliveryStatus: string }) => {
-          return el.deliveryStatus == this.value;
-        },
+    this.adminservice.getCart(this.value).subscribe((res: any) => {
+      this.cart = res,
         (err: errorMessage) => {
           this.toastr.error(`${err.status} Error ${err.name}`);
         }
-      );
     });
   }
 

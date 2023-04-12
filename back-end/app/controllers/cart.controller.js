@@ -14,7 +14,6 @@ exports.addProduct = (req, res) => {
   });
   cart.save(cart).then((data) => {
       res.send(data);
-      console.log("data added to databse");
     }).catch((err) => {
       res.status(500).send({
         message:
@@ -26,7 +25,15 @@ exports.addProduct = (req, res) => {
 exports.getCart = (req, res) => {
   Cart.find()
     .then((data) => {
-      res.send(data);
+      const filters=req.query;
+      const filteredProduct=data.filter(product=>{
+        let values=true
+        for(key in filters){
+          values= values && product[key] == filters[key]
+        }
+        return values
+      })
+      res.send(filteredProduct);
     })
     .catch((err) => {
       res.status(500).send({

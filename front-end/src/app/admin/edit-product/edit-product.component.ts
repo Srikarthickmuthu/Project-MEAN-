@@ -34,10 +34,8 @@ ngOnInit() {
 }
 
   onSubmit(editProduct: NgForm) {
-    console.log(editProduct.value)
     const data = editProduct.value.id;
     this.product = editProduct.value;
-    console.log(data)
     this.userService.editProduct(data, this.product).subscribe(
       () => {
         this.toastr.success('Product details edited successfully..!');

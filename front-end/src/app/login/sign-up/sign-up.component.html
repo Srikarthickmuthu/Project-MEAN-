@@ -78,23 +78,6 @@
       <span *ngIf="!password.valid && password.touched"
         >Password is required in requested format e.g Abcd@123
       </span>
-      <label
-        >Select Your Country
-        <select
-          id="country"
-          name="country"
-          for="country"
-          class="formcontrol"
-          ngModel
-          required
-          country
-        >
-          <option *ngFor="let c of countryList">
-            {{ c.countryname }}
-          </option>
-        </select>
-      </label>
-
       <div>
         <button [disabled]="!userForm.valid">Submit</button>
       </div>

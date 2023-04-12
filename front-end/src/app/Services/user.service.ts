@@ -26,8 +26,8 @@ export class UserService {
   addProduct(data: any) {
     return this.http.post(`${this.url}/cart/`,data);
   }
-  getCart() {
-    return this.http.get(`${this.url}/cart/`);
+  getCart(user:any,data:any) {
+    return this.http.get(`${this.url}/cart?deliveryStatus=${data}&userId=${user}`);
   }
   getSingle(data: number) {
     return this.http.get(`${this.url}/cart/${data}`);

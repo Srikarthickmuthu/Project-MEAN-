@@ -56,7 +56,6 @@ export class ViewProductComponent implements OnChanges {
   }
 
   deleteProduct(data: number) {
-    console.log(data)
     this.userservice.deleteProduct(data).subscribe(
       () => {
         this.getProducts();
