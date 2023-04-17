@@ -19,7 +19,6 @@ export class UserService {
     localStorage.clear();
     this.router.navigate(['/home-path/user-home-path']);
   }
-
   addUser(data: UserData) {
     return this.http.post(`${this.url}/user/`, data);
   }
@@ -61,5 +60,8 @@ export class UserService {
   }
   updateDeliveryAdmin(id: number, data: AddProduct) {
     return this.http.put(`${this.url}/cart/${id}`, data);
+  }
+  login(data:any){
+   return this.http.post(`${this.url}/user/validate/`,data);
   }
 }

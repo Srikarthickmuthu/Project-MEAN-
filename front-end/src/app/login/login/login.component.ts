@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.access.login(this.loginform.value.email , this.loginform.value.password);
+    this.access.login(this.loginform.value);
     this.loginform.reset();
   }
 }

@@ -5,6 +5,8 @@ module.exports = app => {
   
     router.post("/", userPath.addUser);
   
+    router.post("/validate",userPath.validateUser)
+    
     router.get("/", userPath.getUser);
 
     router.delete("/:id", userPath.deleteUser);
