@@ -49,3 +49,30 @@
     </div>
   </form>
 </div>
+
+<div class="container">
+  <form #addCategory="ngForm" (ngSubmit)="addNewCategory(addCategory)">
+    <h1>Add new Category</h1>
+    <div>
+      <input
+        id="categoryName"
+        name="categoryName"
+        class="formcontrol"
+        type="text"
+        placeholder="Enter the name of the category"
+        ngModel
+        required
+      />
+      <input
+        type="url"
+        id="categoryImage"
+        name="categoryImage"
+        class="formcontrol"
+        placeholder="Enter the url of the image"
+        ngModel
+        required
+      />
+      <button>Add category</button>
+    </div>
+  </form>
+</div>

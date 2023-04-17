@@ -23,6 +23,7 @@ export class AdminService {
   getCart(data:any) {
     return this.http.get(`${this.url}/cart?deliveryStatus=${data}`);
   }
+  //
   getSelling(data:any , name:any) {
     return this.http.get(`${this.url}/cart?deliveryStatus=${data}&productName=${name}`);
   }

@@ -53,6 +53,12 @@ export class UserService {
   addProductAdmin(data:any) {
     return this.http.post(`${this.url}/product/`, data);
   }
+  addCategoryAdmin(data:any) {
+    return this.http.post(`${this.url}/category`, data);
+  }
+  getCategory(){
+    return this.http.get(`${this.url}/category`);
+  }
   updateDeliveryAdmin(id: number, data: AddProduct) {
     return this.http.put(`${this.url}/cart/${id}`, data);
   }

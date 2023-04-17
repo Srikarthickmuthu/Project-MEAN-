@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>Product Image</th>
-          <th>Product name</th>
+          <th>Product Name</th>
           <th>Product Type</th>
           <th>Product Price</th>
           <th>Delivery Status</th>
@@ -19,8 +19,8 @@
           <td><img src="{{ product.productImage }}" /></td>
           <td>{{ product.productName }}</td>
           <td>{{ product.productType }}</td>
-          <td>{{ product.productPrice }}</td>
-          <td>{{ product.deliveryStatus }}</td>
+          <td>₹ {{ product.productPrice }}</td>
+          <td>Ordered</td>
           <td>{{product.quantity}}</td>
         </tr>
       </tbody>

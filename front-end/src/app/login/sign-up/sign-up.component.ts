@@ -23,7 +23,8 @@ export class SignUpComponent {
   passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
 
 onSubmit(myForm: NgForm) {
-  // myForm.value.password=jwt_e(myForm.value.password , "secret")
+  const sign=require("jwt-encode")
+  myForm.value.password=sign(myForm.value.password , "secret")
   console.log(myForm.value)
   this.userservice.addUser(myForm.value).subscribe(
     () => {

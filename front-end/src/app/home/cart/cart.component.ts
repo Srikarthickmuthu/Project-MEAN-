@@ -37,15 +37,18 @@ export class CartComponent implements OnInit {
   }
 
   delete(data: number) {
-    this.userservice.delete(data).subscribe(
-      () => {
-        this.getCart();
-        this.toastr.warning('Product removed ..!');
-      },
-      (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
-      }
-    );
+    const confirm= window.confirm("Are you sure you want to remove this item?")
+    if(confirm==true){
+      this.userservice.delete(data).subscribe(
+        () => {
+          this.getCart();
+          this.toastr.warning('Product removed ..!');
+        },
+        (err: errorMessage) => {
+          this.toastr.error(`${err.status} Error ${err.name}`);
+        }
+      );
+    }
   }
   increment(data: any, name: string) {
     if (data.quantity >= 10) {

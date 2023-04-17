@@ -7,10 +7,10 @@
       <thead>
         <tr>
           <th>Product Image</th>
-          <th>Product name</th>
+          <th>Product Name</th>
           <th>Product Type</th>
           <th>Product Price</th>
-          <th>Delivery Status</th>
+          <!-- <th>Delivery Status</th> -->
           <th>Quantity</th>
           <th>Remove</th>
         </tr>
@@ -20,8 +20,8 @@
           <td><img src="{{ product.productImage }}" /></td>
           <td>{{ product.productName }}</td>
           <td>{{ product.productType }}</td>
-          <td>{{ product.productPrice }}</td>
-          <td>{{ product.deliveryStatus }}</td>
+          <td>₹ {{ product.productPrice }}</td>
+          <!-- <td>{{ product.deliveryStatus }}</td> -->
           <td>
             <label>Quantity :</label>
             <button (click)="decrement(product , product.productName)"><i class="fa-solid fa-minus"></i></button>

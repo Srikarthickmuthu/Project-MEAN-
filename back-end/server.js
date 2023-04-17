@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 require("./app/routes/product.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/cart.routes")(app);
-
+require("./app/routes/category.routes")(app);
 app.use(async (req, res, next) => {
   next(createError.NotFound());
 });

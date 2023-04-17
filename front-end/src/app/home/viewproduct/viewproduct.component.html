@@ -3,9 +3,9 @@
   <div *ngFor="let item of product1">
     <div class="card">
       <img src="{{ item.productImage }}" alt="images" />
-      <h3>{{ item.productName }}</h3>
-      <p><strong>Price:</strong>₹ {{ item.productPrice }}</p>
-      <p>{{ item.productType }}</p>
+      <h3><strong>Name : </strong>{{ item.productName }}</h3>
+      <p><strong>Price : </strong>₹ {{ item.productPrice }}</p>
+      <p><strong>Unit  : </strong>{{ item.productType }}</p>
 
       <button (click)="cart(item)" *ngIf="item.show" id="button">ADD TO CART</button>
       <button *ngIf="!item.show" (click)="added()" class="disabled">

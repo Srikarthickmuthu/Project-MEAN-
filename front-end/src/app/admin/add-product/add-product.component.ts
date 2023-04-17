@@ -31,4 +31,15 @@ export class AddProductComponent {
       }
     );
   }
+  addNewCategory(formData:NgForm){
+    this.userService.addCategoryAdmin(formData.value).subscribe(
+      ()=>{
+        formData.resetForm();
+        this.toastr.success('New product added..!');
+      },
+      (err: errorMessage) => {
+        this.toastr.error(`${err.status} Error ${err.name}`);
+      }
+    )
+  }
 }
