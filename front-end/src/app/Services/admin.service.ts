@@ -16,7 +16,9 @@ export class AdminService {
   getProduct(): Observable<any> {
     return this.http.get(`${this.url}/product/`);
   }
-
+  getProductCategory(data:any): Observable<any> {
+    return this.http.get(`${this.url}/product?category=${data}`);
+  }
   getProductEdit(id: any): Observable<any> {
     return this.http.get(`${this.url}/product/${id}`);
   }

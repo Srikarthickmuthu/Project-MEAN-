@@ -4,6 +4,7 @@ const Product = db.products;
 exports.addProduct = (req, res) => {
   const product = new Product({
     productName: req.body.productName,
+    category:req.body.category,
     productPrice: req.body.productPrice,
     productType: req.body.productType,
     productImage: req.body.productImage,
@@ -22,7 +23,15 @@ exports.addProduct = (req, res) => {
 
 exports.getProduct = (req, res) => {
   Product.find().then((data) => {
-      res.send(data);
+     const filters=req.query;
+      const filteredProduct=data.filter(product=>{
+        let values=true
+        for(key in filters){
+          values= values && product[key] == filters[key]
+        }
+        return values
+      })
+      res.send(filteredProduct);
     }).catch((err) => {
       res.status(500).send({
         message:

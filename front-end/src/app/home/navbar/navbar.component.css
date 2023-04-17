@@ -17,3 +17,9 @@ img {
   left: 10px;
   height: 80px;
 }
+nav{
+  position:fixed;
+  width:100%;
+  padding: 5px;
+  background-color: grey;
+}

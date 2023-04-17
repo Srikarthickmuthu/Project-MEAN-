@@ -25,7 +25,9 @@ export class UserHomeComponent {
       }
     );
   }
-  route(data:any){
-    this.router.navigate(["/home-path/view-home-path"]);
-  }
+ redirect(data:any){
+    // this.userservice.category(data)
+    localStorage.setItem("category",data)
+    this.router.navigate(["/home-path/view-home-path"])
+ }
 }

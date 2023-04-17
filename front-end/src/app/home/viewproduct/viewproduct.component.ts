@@ -19,6 +19,7 @@ export class ViewproductComponent implements OnInit {
   public id: any = [];
   public id1: any = [];
   public idValue = "";
+  public category:any
   constructor(
     public adminservice: AdminService,
     public userservice: UserService,
@@ -26,7 +27,8 @@ export class ViewproductComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-    this.adminservice.getProduct().subscribe(
+    this.category=localStorage.getItem("category")
+    this.adminservice.getProductCategory(this.category).subscribe(
       (res: AddProduct[]) => {
         this.product = res;
       },

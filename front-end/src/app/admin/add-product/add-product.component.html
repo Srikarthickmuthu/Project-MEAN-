@@ -4,6 +4,22 @@
   <form #addProduct="ngForm" (ngSubmit)="onSubmit(addProduct)">
     <h1>Add new product</h1>
     <div>
+      <label
+        >Select the product category
+        <select
+          id="category"
+          name="category"
+          for="category"
+          class="formcontrol"
+          ngModel
+          required
+          category
+        >
+          <option *ngFor="let c of category">
+            {{ c }}
+          </option>
+        </select>
+      </label>
       <input
         id="productName"
         name="productName"

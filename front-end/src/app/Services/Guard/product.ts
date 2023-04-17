@@ -3,6 +3,7 @@ export interface AddProduct {
   userId: string;
   _id:number;
   show:true;
+  category:string;
   productName: string;
   productType: string;
   productPrice: number;

@@ -19,6 +19,10 @@ export class UserService {
     localStorage.clear();
     this.router.navigate(['/home-path/user-home-path']);
   }
+  category(data:any){
+    const category=data;
+    return category
+  }
   addUser(data: UserData) {
     return this.http.post(`${this.url}/user/`, data);
   }

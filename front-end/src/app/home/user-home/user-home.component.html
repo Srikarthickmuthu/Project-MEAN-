@@ -2,15 +2,11 @@
 
 <div class="intro">
   <h1>BigBasket</h1>
-  <br />
-  <p id="para">India’s largest online supermarket</p>
-  <br />
-  <button routerLink="/home-path/view-home-path">Order now</button>
 </div>
 <div class="container">
   <div *ngFor="let item of category">
     <div class="card">
-      <img src="{{item.categoryImage}}" alt="Image">
+      <img src="{{item.categoryImage}}" alt="Image"  (click)="redirect(item.categoryName)">
     </div>
   </div>
 </div>

@@ -16,7 +16,7 @@ export class AddProductComponent {
     private toastr: ToastrService,
     private userService:UserService,
   ) {}
-
+    category:any=[];
   onSubmit(formData: NgForm): void {
     console.log(formData.value)
     formData.value.show=true
@@ -41,5 +41,12 @@ export class AddProductComponent {
         this.toastr.error(`${err.status} Error ${err.name}`);
       }
     )
+  }
+  ngOnInit(){
+    this.userService.getCategory().subscribe((res:any)=>{
+      res.forEach((element: { categoryName: any; }) => {
+        this.category.push(element.categoryName)
+      });
+    })
   }
 }
