@@ -4,7 +4,6 @@ import { UserService } from 'src/app/Services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { errorMessage } from 'src/app/Services/Guard/product';
 import { Router } from '@angular/router';
-// import jwt from 'jwt-encode';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,9 +22,6 @@ export class SignUpComponent {
   passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
 
 onSubmit(myForm: NgForm) {
-  const sign=require("jwt-encode")
-  myForm.value.password=sign(myForm.value.password , "secret")
-  console.log(myForm.value)
   this.userservice.addUser(myForm.value).subscribe(
     () => {
       this.handleSuccess(myForm);

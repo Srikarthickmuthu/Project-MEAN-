@@ -1,7 +1,6 @@
 const db = require("../models");
 const User = db.user;
-const decode = require("jwt-decode");
-const encode = require("jwt-encode");
+const jwt= require("jsonwebtoken")
 exports.addUser = (req, res) => {
   const user = new User({
     fname: req.body.fname,
@@ -38,23 +37,17 @@ exports.getUser = (req, res) => {
     });
 };
 exports.validateUser = (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  User.find().then((data) => {
-    const user = data.filter((user) => {
-      user.email == email && decode(user.password) == password;
-    });
-    if (user) {
-      res.send({
-        token: encode(req.body.email, "Secret"),
-      });
-    } else {
-      res.send({
-        message: "user not found",
-      });
-    }
-  });
-};
+  const emailValue = req.body.email;
+  const passwordValue =req.body.password;
+  User.findOne({email:emailValue , password:passwordValue}).then((user)=>{
+    const token = jwt.sign(user.email,"secret")
+    res.json(token);
+  }).catch((err)=>{
+    return res.status(401).json({
+      message:"Invalid username and password "
+  })
+  })
+}
 
 exports.deleteUser = (req, res) => {
   const id = req.params.id;
