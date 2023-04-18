@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrService } from 'ngx-toastr';
-import { of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/home/navbar/navbar.component';
 import { AdminService } from 'src/app/Services/admin.service';
 import { UserService } from 'src/app/Services/user.service';

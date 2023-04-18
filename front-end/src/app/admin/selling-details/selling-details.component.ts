@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/Services/admin.service';
 import { AddProduct, errorMessage } from 'src/app/Services/Guard/product';
-import { UserService } from 'src/app/Services/user.service';
 import { TallyComponent } from '../tally/tally.component';
 
 @Component({

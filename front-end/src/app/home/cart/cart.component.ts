@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { errorMessage } from 'src/app/Services/Guard/product';
-import { UserService } from 'src/app/Services/user.service';
+import { Component, OnInit } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+import { errorMessage } from "src/app/Services/Guard/product";
+import { UserService } from "src/app/Services/user.service";
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.css"],
 })
 export class CartComponent implements OnInit {
   public cart: any = [];
@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   public product1: any;
   public uniqueCart: any;
   public id: any;
-  user = localStorage.getItem('Active-User');
+  user = localStorage.getItem("Active-User");
   constructor(public userservice: UserService, public toastr: ToastrService) {}
 
   ngOnInit() {
@@ -22,11 +22,11 @@ export class CartComponent implements OnInit {
   }
 
   getCart() {
-    this.userservice.getCart(this.user,"Ordered").subscribe(
+    this.userservice.getCart(this.user, "Ordered").subscribe(
       (res: any) => {
-        this.cart=res
+        this.cart = res;
         if (this.cart.length == 0) {
-          localStorage.removeItem('id');
+          localStorage.removeItem("id");
         }
       },
       (err: errorMessage) => {
@@ -37,12 +37,14 @@ export class CartComponent implements OnInit {
   }
 
   delete(data: number) {
-    const confirm= window.confirm("Are you sure you want to remove this item?")
-    if(confirm==true){
+    const confirm = window.confirm(
+      "Are you sure you want to remove this item?"
+    );
+    if (confirm == true) {
       this.userservice.delete(data).subscribe(
         () => {
           this.getCart();
-          this.toastr.warning('Product removed ..!');
+          this.toastr.warning("Product removed ..!");
         },
         (err: errorMessage) => {
           this.toastr.error(`${err.status} Error ${err.name}`);
@@ -52,7 +54,7 @@ export class CartComponent implements OnInit {
   }
   increment(data: any, name: string) {
     if (data.quantity >= 10) {
-      this.toastr.info('You can add upto 10 units only !');
+      this.toastr.info("You can add upto 10 units only !");
       data.quantity = 10;
     } else if (data.quantity >= 1) {
       data.quantity++;
@@ -89,16 +91,16 @@ export class CartComponent implements OnInit {
           this.toastr.error(`${err.status} Error ${err.name}`);
         }
       );
-    } else if ((data.quantity = 1)) {
+    } else if (data.quantity == 1) {
       this.delete(this.id);
     }
   }
- async checkout() {
-  for (const element of this.cart) {
-    element.deliveryStatus = 'Out for delivery';
-    const id = element._id;
-    await this.userservice.updateDelivery(id, element).toPromise();
+  async checkout() {
+    for (const element of this.cart) {
+      element.deliveryStatus = "Out for delivery";
+      const id = element._id;
+      await this.userservice.updateDelivery(id, element).toPromise();
+    }
+    this.getCart();
   }
-  this.getCart();
-}
 }
