@@ -1,17 +1,18 @@
 const db = require("../models");
 const User = db.user;
-const jwt= require("jsonwebtoken")
-const bcrypt=require("bcryptjs")
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 exports.addUser = (req, res) => {
   const user = new User({
     fname: req.body.fname,
     lname: req.body.lname,
     number: req.body.number,
     email: req.body.email,
-    password: req.body.password,
+    password: bcrypt.hashSync(req.body.password, 8),
     gender: req.body.gender,
     country: req.body.country,
   });
+
   user
     .save(user)
     .then((data) => {
@@ -21,7 +22,7 @@ exports.addUser = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Product.",
+          err.message || "Some error occurred while creating the users.",
       });
     });
 };
@@ -33,31 +34,52 @@ exports.getUser = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving products.",
+          err.message || "Some error occurred while retrieving users.",
       });
     });
 };
 exports.validateUser = (req, res) => {
-  const emailValue = req.body.email;
-  const passwordValue =req.body.password;
-  User.findOne({email:emailValue , password:passwordValue}).then((user)=>{
-    // const passwordsMatch = comparePasswords(passwordValue, user.password);
-    // console.log(passwordsMatch)
-    // if (!passwordsMatch) {
-    //   res.status(401).json({ message: 'Invalid email or password' });
-    //   return;
-    // }
-    const token = jwt.sign(user.email,"secret")
-    res.json(token);
-  }).catch((err)=>{
-    return res.status(401).json({
-      message:" Invalid username and password "
+  User.findOne({
+    email: req.body.email,
   })
-  })
-}
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({
+          message: "User Not found.",
+        });
+      }
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!",
+        });
+      }
+      var token = jwt.sign(
+        {
+          email: user.email,
+        },
+        "Secret",
+        {
+          expiresIn: 86400,
+        }
+      );
+      res.status(200).send({
+        message: "Login successfull",
+        accessToken: token,
+      });
+    })
+    // .catch((err) => {
+    //   res.status(500).send({
+    //     message: err,
+    //   });
+    // });
+};
 exports.deleteUser = (req, res) => {
   const id = req.params.id;
-  console.log(id);
 
   User.findByIdAndRemove(id)
     .then((data) => {
@@ -71,7 +93,7 @@ exports.deleteUser = (req, res) => {
         });
       }
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(500).send({
         message: "Could not delete User",
       });
