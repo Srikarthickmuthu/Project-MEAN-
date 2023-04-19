@@ -10,7 +10,7 @@ module.exports = (mongoose) => {
           type:String,
           required:true,
           lowercase:true,
-          unique:true
+          unique:[true,{message:"Email already exists in database"}]
         },
         password: {
           type:String,

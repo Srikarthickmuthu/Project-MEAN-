@@ -1,7 +1,7 @@
 module.exports = app => {
     const userPath = require("../controllers/user.controller.js");
 
-    const verifyToken =require('../middlewares/verifyToken.js')
+    const verifyToken =require('../middlewares/authJWT.js')
 
     var router = require("express").Router();
   

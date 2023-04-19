@@ -1,6 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const jwt= require("jsonwebtoken")
+const bcrypt=require("bcryptjs")
 exports.addUser = (req, res) => {
   const user = new User({
     fname: req.body.fname,
@@ -40,15 +41,20 @@ exports.validateUser = (req, res) => {
   const emailValue = req.body.email;
   const passwordValue =req.body.password;
   User.findOne({email:emailValue , password:passwordValue}).then((user)=>{
+    // const passwordsMatch = comparePasswords(passwordValue, user.password);
+    // console.log(passwordsMatch)
+    // if (!passwordsMatch) {
+    //   res.status(401).json({ message: 'Invalid email or password' });
+    //   return;
+    // }
     const token = jwt.sign(user.email,"secret")
     res.json(token);
   }).catch((err)=>{
     return res.status(401).json({
-      message:"Invalid username and password "
+      message:" Invalid username and password "
   })
   })
 }
-
 exports.deleteUser = (req, res) => {
   const id = req.params.id;
   console.log(id);

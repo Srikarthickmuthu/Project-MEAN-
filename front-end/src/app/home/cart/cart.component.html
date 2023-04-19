@@ -10,7 +10,6 @@
           <th>Product Name</th>
           <th>Product Type</th>
           <th>Product Price</th>
-          <!-- <th>Delivery Status</th> -->
           <th>Quantity</th>
           <th>Remove</th>
         </tr>
@@ -21,11 +20,10 @@
           <td>{{ product.productName }}</td>
           <td>{{ product.productType }}</td>
           <td>₹ {{ product.productPrice }}</td>
-          <!-- <td>{{ product.deliveryStatus }}</td> -->
           <td>
-            <label>Quantity :</label>
+            <label>Quantity </label>
             <button (click)="decrement(product , product.productName)"><i class="fa-solid fa-minus"></i></button>
-            <b> {{product.quantity}} </b>
+            <b>  {{product.quantity}}  </b>
             <button (click)="increment(product , product.productName)"><i class="fa-solid fa-plus"></i></button>
           </td>
           <td><button (click)="delete(product._id)" id="button">Remove</button></td>

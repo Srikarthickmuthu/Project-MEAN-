@@ -23,6 +23,7 @@ exports.addProduct = (req, res) => {
 
 exports.getProduct = (req, res) => {
   Product.find().then((data) => {
+    
      const filters=req.query;
       const filteredProduct=data.filter(product=>{
         let values=true

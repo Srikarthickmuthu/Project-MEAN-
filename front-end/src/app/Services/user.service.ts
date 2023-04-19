@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddProduct } from './Guard/product';
 import { UserData } from './Guard/sign-up';
-
+// import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +64,7 @@ export class UserService {
     return this.http.put(`${this.url}/cart/${id}`, data);
   }
   login(data:any){
-   return this.http.post(`${this.url}/user/validate/`,data);
+    // data.password=bcrypt.hash(data.password,10)
+    return this.http.post(`${this.url}/user/validate/`,data);
   }
 }

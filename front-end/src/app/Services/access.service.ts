@@ -4,7 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { UserData } from "./Guard/sign-up";
 import { UserService } from "./user.service";
 import { errorMessage } from "./Guard/product";
-
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: "root",
@@ -34,5 +34,5 @@ export class AccessService {
         }
       );
     }
-  }
+  }  
 }
