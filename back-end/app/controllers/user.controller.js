@@ -12,7 +12,6 @@ exports.addUser = (req, res) => {
     gender: req.body.gender,
     country: req.body.country,
   });
-
   user
     .save(user)
     .then((data) => {
@@ -69,14 +68,14 @@ exports.validateUser = (req, res) => {
       );
       res.status(200).send({
         message: "Login successfull",
-        accessToken: token,
+        token: token,
       });
     })
-    // .catch((err) => {
-    //   res.status(500).send({
-    //     message: err,
-    //   });
-    // });
+    .catch((err) => {
+      res.status(500).send({
+        message: err,
+      });
+    });
 };
 exports.deleteUser = (req, res) => {
   const id = req.params.id;

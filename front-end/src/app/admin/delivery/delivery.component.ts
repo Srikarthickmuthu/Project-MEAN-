@@ -28,7 +28,7 @@ export class DeliveryComponent implements OnInit {
     this.adminservice.getCart(this.value).subscribe((res: any) => {
       this.cart = res,
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
     });
   }
@@ -43,7 +43,7 @@ export class DeliveryComponent implements OnInit {
           this.getCart();
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     });

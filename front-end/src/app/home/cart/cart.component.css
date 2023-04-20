@@ -30,11 +30,7 @@ img {
   height: 100px;
   border-radius: 80px;
 }
-/* button {
-  padding: 5px 20px;
-  font-size: large;
-  background-color: red;
-} */
+
 .card {
   background-image: url(../../../assets/product-images/empthCart.png);
   background-repeat: no-repeat;
@@ -51,7 +47,7 @@ img {
 #button {
   border-radius: 20px;
   border: 1px solid #00d2ff;
-  background-color: #3a47d5;
+  background-color: #6e77e2;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -63,15 +59,12 @@ img {
 }
 
 #button:hover {
-  background-color: #92fe9d;
+  background-color: #0e0560;
 }
 #place{
   background-color: #5795d7;
 }
-/* b{
-  border: 1px solid black;
-  padding: 4px 10px;
-} */
+
 #check{
   border-radius: 20px;
   border: 1px solid #00d2ff;

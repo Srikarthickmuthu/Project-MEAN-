@@ -33,7 +33,7 @@ export class ViewproductComponent implements OnInit {
         this.product = res;
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
     this.getCart();
@@ -53,7 +53,7 @@ export class ViewproductComponent implements OnInit {
           data.show = false;
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
       delete data._id;

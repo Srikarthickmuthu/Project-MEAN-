@@ -32,7 +32,18 @@ select {
   max-width: 500px;
   min-width: 400px;
 }
-
+#column{
+  float:left;
+   width:50%;
+   margin-left: 20%;
+   margin-top: 50px;
+}
+#column1{
+  float:right;
+  width: 50%;
+  margin-right: 20%;
+  margin-top: 50px;
+}
 button {
   border-radius: 20px;
   background-color: #3a47d5;

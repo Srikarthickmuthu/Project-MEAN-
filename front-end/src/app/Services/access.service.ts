@@ -24,13 +24,14 @@ export class AccessService {
       this.toastr.success("Welcome admin ");
     } else {
       this.userservice.login(data).subscribe(
-        () => {
+        (res:any) => {
           this.toastr.success("Login Successful !!");
           localStorage.setItem("Active-User", data.email);
+          localStorage.setItem("token", res.token);
           this.router.navigate(["/home-path/user-home-path"]);
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     }

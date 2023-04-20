@@ -30,7 +30,7 @@ export class ViewProductComponent implements OnChanges {
         this.product = res;
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   }
@@ -48,7 +48,7 @@ export class ViewProductComponent implements OnChanges {
           this.getProducts();
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     localStorage.setItem('id', data.toString());
@@ -62,7 +62,7 @@ export class ViewProductComponent implements OnChanges {
         this.toastr.warning('Product deleted..!');
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   }

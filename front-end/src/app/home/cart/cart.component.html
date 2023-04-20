@@ -12,6 +12,7 @@
           <th>Product Price</th>
           <th>Quantity</th>
           <th>Remove</th>
+          <th>Buy Now</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@
             <button (click)="increment(product , product.productName)"><i class="fa-solid fa-plus"></i></button>
           </td>
           <td><button (click)="delete(product._id)" id="button">Remove</button></td>
+          <td><button (click)="checkoutOne(product)" id="button">Buy This Now</button></td>
         </tr>
       </tbody>
       <tfoot>
@@ -34,7 +36,7 @@
           <th colspan="3">Total price of the products :</th>
           <td>₹ {{ (cart | sum : "total") }}</td>
           <td colspan="2">
-            <button id="check" (click)="checkout()">Checkout</button>
+            <button id="check" (click)="checkout()">Place Order</button>
           </td>
         </tr>
       </tfoot>

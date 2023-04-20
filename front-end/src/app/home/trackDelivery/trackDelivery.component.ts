@@ -28,7 +28,7 @@ export class TrackDeliveryComponent implements OnInit {
         }
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
     return this.cart;

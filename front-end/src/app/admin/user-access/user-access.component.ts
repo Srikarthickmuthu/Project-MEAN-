@@ -30,7 +30,7 @@ export class UserAccessComponent implements OnInit {
         this.user = res;
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   }
@@ -42,7 +42,7 @@ export class UserAccessComponent implements OnInit {
         this.getUser();
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   }

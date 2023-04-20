@@ -34,7 +34,7 @@ export class SellingDetailsComponent {
     this.adminservice.getSelling(this.value,data).subscribe((res: any) => {
       this.cart1 = res,
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       for(const element of this.cart1){
         this.Quantity=this.Quantity+element.quantity
@@ -63,7 +63,7 @@ export class SellingDetailsComponent {
             this.clear();
           },
           (err: errorMessage) => {
-            this.toastr.error(`${err.status} Error ${err.name}`);
+            this.toastr.error(`${err.status} Error ${err.message}`);
           }
         );
     }, 700);

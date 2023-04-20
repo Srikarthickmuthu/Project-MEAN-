@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
         }
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
     return this.cart;
@@ -47,7 +47,7 @@ export class CartComponent implements OnInit {
           this.toastr.warning("Product removed ..!");
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     }
@@ -69,7 +69,7 @@ export class CartComponent implements OnInit {
           this.getCart();
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     }
@@ -88,7 +88,7 @@ export class CartComponent implements OnInit {
           this.getCart();
         },
         (err: errorMessage) => {
-          this.toastr.error(`${err.status} Error ${err.name}`);
+          this.toastr.error(`${err.status} Error ${err.message}`);
         }
       );
     } else if (data.quantity == 1) {
@@ -102,5 +102,13 @@ export class CartComponent implements OnInit {
       await this.userservice.updateDelivery(id, element).toPromise();
     }
     this.getCart();
+    this.toastr.success("Order placed successfully");
+  }
+  checkoutOne(data:any){
+    data.deliveryStatus="Out for delivery"
+    const id=data._id
+    this.userservice.updateDelivery(id,data).subscribe();
+    this.getCart()
+    this.toastr.success("Order placed successfully");
   }
 }

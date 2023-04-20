@@ -21,7 +21,7 @@ export class UserHomeComponent {
         this.category = res;
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   }

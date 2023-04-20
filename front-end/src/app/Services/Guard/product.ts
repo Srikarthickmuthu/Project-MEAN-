@@ -15,5 +15,5 @@ export interface AddProduct {
 
 export interface errorMessage{
   status:number;
-  name:string;
+  message:string;
 }

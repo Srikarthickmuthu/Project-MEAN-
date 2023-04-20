@@ -27,8 +27,8 @@ ngOnInit() {
     (res: any) => {
       this.product = res;
     },
-    (err) => {
-      this.toastr.error(`${err.status} Error ${err.name}`);
+    (err:errorMessage) => {
+      this.toastr.error(`${err.status} Error ${err.message}`);
     }
   );
 }
@@ -42,7 +42,7 @@ ngOnInit() {
         this.dialog.closeAll();
       },
       (err: errorMessage) => {
-        this.toastr.error(`${err.status} Error ${err.name}`);
+        this.toastr.error(`${err.status} Error ${err.message}`);
       }
     );
   
