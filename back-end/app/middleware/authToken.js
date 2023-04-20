@@ -1,10 +1,12 @@
 const jwt=require("jsonwebtoken")
+
 require("dotenv").config()
+
 function authenticate(req,res,next){
 
     const token=req.headers.authorization
 
-    console.log(jwt.decode(token))
+    // console.log(jwt.decode(token))
     
     jwt.verify(token,process.env.SECRET_KEY,(err,response)=>{
         if(err){
@@ -14,6 +16,6 @@ function authenticate(req,res,next){
             next();
         }
     })
-    
 }
+
 module.exports=authenticate;
