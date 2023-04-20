@@ -2,6 +2,8 @@ const db = require("../models");
 const User = db.user;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
+
 exports.addUser = (req, res) => {
   const user = new User({
     fname: req.body.fname,
@@ -61,7 +63,7 @@ exports.validateUser = (req, res) => {
         {
           email: user.email,
         },
-        "Secret",
+        process.env.SECRET_KEY,
         {
           expiresIn: 86400,
         }
