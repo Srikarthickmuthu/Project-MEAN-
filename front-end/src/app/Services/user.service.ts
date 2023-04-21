@@ -1,40 +1,40 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AddProduct } from './Guard/product';
-import { UserData } from './Guard/sign-up';
-// import * as bcrypt from 'bcryptjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { AddProduct } from "./Guard/product";
+import { UserData } from "./Guard/sign-up";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) {
-  
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  url = 'http://localhost:8080';
+  url = "http://localhost:8080";
 
-  token=localStorage.getItem('token')
+  token = localStorage.getItem("token");
 
-  headers={Authorization:`${this.token}`}
+  headers = { Authorization: `${this.token}` };
 
   getUser() {
-    return localStorage.getItem('Active-User');
+    return localStorage.getItem("Active-User");
   }
   logout() {
     localStorage.clear();
-    this.router.navigate(['/home-path/user-home-path']);
+    this.router.navigate(["/home-path/user-home-path"]);
   }
 
   addUser(data: UserData) {
-    return this.http.post(`${this.url}/user/`, data );
+    return this.http.post(`${this.url}/user/`, data);
   }
   addProduct(data: any) {
-    return this.http.post(`${this.url}/cart/`,data, {headers:this.headers});
+    return this.http.post(`${this.url}/cart/`, data, { headers: this.headers });
   }
-  getCart(user:any,data:any) {
-    return this.http.get(`${this.url}/cart?deliveryStatus=${data}&userId=${user}`, {headers:this.headers});
+  getCart(user: any, data: any) {
+    return this.http.get(
+      `${this.url}/cart?deliveryStatus=${data}&userId=${user}`,
+      { headers: this.headers }
+    );
   }
   getSingle(data: number) {
     return this.http.get(`${this.url}/cart/${data}`);
@@ -43,10 +43,14 @@ export class UserService {
     return this.http.get(`${this.url}/product/${data}`);
   }
   delete(data: number) {
-    return this.http.delete(`${this.url}/cart/${data}`, {headers:this.headers});
+    return this.http.delete(`${this.url}/cart/${data}`, {
+      headers: this.headers,
+    });
   }
   updateDelivery(id: number, data: AddProduct) {
-    return this.http.put(`${this.url}/cart/${id}`, data, {headers:this.headers});
+    return this.http.put(`${this.url}/cart/${id}`, data, {
+      headers: this.headers,
+    });
   }
   deleteProduct(id: number) {
     return this.http.delete(`${this.url}/product/${id}`);
@@ -57,19 +61,19 @@ export class UserService {
   editProduct(id: number, update: AddProduct) {
     return this.http.put(`${this.url}/product/${id}`, update);
   }
-  addProductAdmin(data:any) {
+  addProductAdmin(data: any) {
     return this.http.post(`${this.url}/product/`, data);
   }
-  addCategoryAdmin(data:any) {
+  addCategoryAdmin(data: any) {
     return this.http.post(`${this.url}/category`, data);
   }
-  getCategory(){
+  getCategory() {
     return this.http.get(`${this.url}/category`);
   }
   updateDeliveryAdmin(id: number, data: AddProduct) {
     return this.http.put(`${this.url}/cart/${id}`, data);
   }
-  login(data:any){
-    return this.http.post(`${this.url}/user/validate/`,data);
+  login(data: any) {
+    return this.http.post(`${this.url}/user/validate/`, data);
   }
 }

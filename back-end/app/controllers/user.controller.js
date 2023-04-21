@@ -22,8 +22,7 @@ exports.addUser = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the users.",
+        message: err.message || "Some error occurred while creating the users.",
       });
     });
 };
@@ -34,14 +33,15 @@ exports.getUser = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving users.",
+        message: err.message || "Some error occurred while retrieving users.",
       });
     });
 };
 exports.validateUser = (req, res) => {
-
-  if(req.body.email==="admin@aspire.com" && req.body.password==="Admin@123"){
+  if (
+    req.body.email === "admin@aspire.com" &&
+    req.body.password === "Admin@123"
+  ) {
     var token = jwt.sign(
       {
         email: req.body.email,
@@ -53,49 +53,48 @@ exports.validateUser = (req, res) => {
     );
     res.status(200).send({
       message: "Login successfull",
-      role:"Admin",
+      role: "Admin",
       token: token,
     });
-  }
-  else{
-  User.findOne({
-    email: req.body.email,
-  })
-    .then((user) => {
-      if (!user) {
-        return res.status(404).send({
-          message: "User Not found.",
-        });
-      }
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-      if (!passwordIsValid) {
-        return res.status(401).send({
-          accessToken: null,
-          message: "Invalid Password!",
-        });
-      }
-      var token = jwt.sign(
-        {
-          email: user.email,
-        },
-        process.env.SECRET_KEY,
-        {
-          expiresIn: 86400,
-        }
-      );
-      res.status(200).send({
-        message: "Login successfull",
-        token: token,
-      });
+  } else {
+    User.findOne({
+      email: req.body.email,
     })
-    .catch((err) => {
-      res.status(500).send({
-        message: err,
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: "User Not found.",
+          });
+        }
+        var passwordIsValid = bcrypt.compareSync(
+          req.body.password,
+          user.password
+        );
+        if (!passwordIsValid) {
+          return res.status(401).send({
+            accessToken: null,
+            message: "Invalid Password!",
+          });
+        }
+        var token = jwt.sign(
+          {
+            email: user.email,
+          },
+          process.env.SECRET_KEY,
+          {
+            expiresIn: 86400,
+          }
+        );
+        res.status(200).send({
+          message: "Login successfull",
+          token: token,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err,
+        });
       });
-    });
   }
 };
 exports.deleteUser = (req, res) => {
