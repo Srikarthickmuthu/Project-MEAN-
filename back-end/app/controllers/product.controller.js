@@ -1,6 +1,5 @@
 const db = require("../models");
 const Product = db.products;
-const productService=require("../services/product.service")
 
 exports.addProduct = (req, res) => {
   const product = new Product({
@@ -11,13 +10,7 @@ exports.addProduct = (req, res) => {
     productImage: req.body.productImage,
     show: req.body.show,
   });
-  // try{
-  //   const products=await= productService.createProducts(product)
-  //   res.json(products)
-  // }
-  // catch(err){
-  //   res.status(400).send(err.message)
-  // }
+
   product.save(product).then((data) => {
       res.send(data);
       console.log("data added to databse");
