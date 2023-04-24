@@ -3,14 +3,14 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { AddProduct } from "./Guard/product";
 import { UserData } from "./Guard/sign-up";
-
+import{environment} from "../../environments/environment"
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  url = "http://localhost:8080";
+  url = environment.baseUrl;
 
   token = localStorage.getItem("token");
 
@@ -31,9 +31,9 @@ export class UserService {
     return this.http.post(`${this.url}/cart/`, data, { headers: this.headers });
   }
   getCart(user: any, data: any) {
+    // console.log(this.headers)
     return this.http.get(
-      `${this.url}/cart?deliveryStatus=${data}&userId=${user}`,
-      { headers: this.headers }
+      `${this.url}/cart?deliveryStatus=${data}&userId=${user}`,{ headers: this.headers }
     );
   }
   getSingle(data: number) {

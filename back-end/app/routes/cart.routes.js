@@ -8,6 +8,8 @@ module.exports = app => {
     router.post("/",  authToken ,cartPath.addProduct);
   
     router.get("/", authToken ,cartPath.getCart);
+
+    router.get("/get", cartPath.getCart);
   
     router.get("/:id", cartPath.getSingleCart);
 

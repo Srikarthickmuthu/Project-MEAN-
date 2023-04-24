@@ -43,6 +43,28 @@ exports.getCart = (req, res) => {
     });
 };
 
+exports.getCart1 = (req, res) => {
+  Cart.find(userId==req.query.userId && deliveryStatus==req.query.deliveryStatus)
+    .then((data) => {
+      // const filters=req.query;
+      // const filteredProduct=data.filter(product=>{
+      //   let values=true
+      //   for(key in filters){
+      //     values= values && product[key] == filters[key]
+      //   }
+      //   return values
+      // })
+      // res.send(filteredProduct);
+      res.send(data)
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving products.",
+      });
+    });
+};
+
 exports.getSingleCart = (req, res) => {
   const id = req.params.id;
 
