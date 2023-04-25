@@ -46,6 +46,7 @@ export class ViewProductComponent implements OnChanges {
       .afterClosed().subscribe(
         () => {
           this.getProducts();
+          localStorage.removeItem("id")
         },
         (err: errorMessage) => {
           this.toastr.error(`${err.status} Error ${err.message}`);
